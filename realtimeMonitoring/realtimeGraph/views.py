@@ -14,6 +14,14 @@ class DashboardView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
+    def get(self, request, *args, **kwargs):
+        data = {}
+        try:
+            print("LLego metodo")
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data, safe=False)
+
     def post(self, request, *args, **kwargs):
         data = {}
         try:
@@ -78,16 +86,6 @@ def get_last_measure(sensor):
     print(last_measure.dateTime)
     print(datetime.now())
     return (last_measure.value)
-
-
-def getTestData(request, *args, **kwargs):
-    data = {}
-    try:
-        print("LLego metodo")
-    except Exception as e:
-        data['error'] = str(e)
-    return JsonResponse(data, safe=False)
-
 
 class HistoricalView(TemplateView):
     template_name = 'historical.html'
