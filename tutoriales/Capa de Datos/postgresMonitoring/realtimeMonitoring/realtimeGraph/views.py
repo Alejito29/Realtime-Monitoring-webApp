@@ -43,7 +43,7 @@ class DashboardView(TemplateView):
             tmpJson_cityO = serializers.serialize("json", cityO)
             tmpJson_stateO = serializers.serialize("json", stateO)
             tmpJson_countryO = serializers.serialize("json", countryO)
-            response = {'key': "value"}
+            response = {'user': tmpJson_cityO}
             return HttpResponse(json.dumps(response), content_type="application/json")
         except Exception as e:
             data['error'] = str(e)
