@@ -5,6 +5,6 @@ from .views import *
 
 urlpatterns = [
     path('', DashboardView.as_view(), name='dashboard'),
-    path('getTest/', name='getTestData'),
+    path('getTest/', DashboardView.as_view(), name='getTestData'),
     path('historical/', HistoricalView.as_view(), name='historical'),
 ]
