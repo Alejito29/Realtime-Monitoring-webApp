@@ -39,7 +39,7 @@ class DashboardView(TemplateView):
         try:
            user_list = User.objects.all()
            tmpJson = serializers.serialize("json", user_list)
-           station_list = Station.objects.all()
+           station_list = City.objects.all()
            statiton_tmpJson = serializers.serialize("json", station_list)
            jsonMerged = {**json.loads(tmpJson), **json.loads(statiton_tmpJson)}
            return HttpResponse(json.dumps(jsonMerged))
