@@ -93,3 +93,15 @@ class HistoricalView(TemplateView):
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
+
+
+class TestData(TemplateView):
+    template_name = 'historical.html'
+
+    def getTestData(self, request, *args, **kwargs):
+        data = {}
+        try:
+            print("LLego metodo")
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data, safe=False)
