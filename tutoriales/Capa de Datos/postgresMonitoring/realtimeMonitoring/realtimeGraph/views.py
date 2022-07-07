@@ -42,7 +42,10 @@ class DashboardView(TemplateView):
             location_list_serialize = json.loads(serialize('json', location_list))
             state_list = State.objects.all().order_by('name')
             state_list_serialize = json.loads(serialize('json', state_list))
-            return JsonResponse({'location': location_list_serialize, 'state': state_list_serialize })
+            country_list = Country.objects.all().order_by('name')
+            country_list_serialize = json.loads(serialize('json', country_list))
+
+            return JsonResponse({'location': location_list_serialize, 'state': state_list_serialize, 'country': country_list_serialize })
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
