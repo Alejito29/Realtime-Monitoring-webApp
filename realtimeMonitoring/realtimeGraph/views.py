@@ -14,19 +14,6 @@ class DashboardView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request, *args, **kwargs):
-        data = {}
-        try:
-            user = User.objects.all()
-            print('woot' + user)
-            location = Location.objects.all()
-            sensor = Sensor.objects.all()
-            last_measure = SensorData.objects.all()
-            data = {'user': user}
-        except Exception as e:
-            data['error'] = str(e)
-        return JsonResponse(data, safe=False)
-
     def post(self, request, *args, **kwargs):
         data = {}
         try:
@@ -38,7 +25,7 @@ class DashboardView(TemplateView):
                 location = Location.objects.get(name=locationName)
                 sensor = get_sensor('temperature', user, location)
                 data = {'y': get_last_measure(sensor)}
-                # data = {'y': 1}
+                #data = {'y': 1}
 
                 print(data)
             else:
@@ -47,15 +34,13 @@ class DashboardView(TemplateView):
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
 
-
 def get_or_create_user(login):
     try:
         user = User.objects.get(login=login)
     except User.DoesNotExist:
         user = User(login=login)
         user.save()
-    return (user)
-
+    return(user)
 
 def get_or_create_location(name):
     try:
@@ -63,8 +48,7 @@ def get_or_create_location(name):
     except Location.DoesNotExist:
         location = Location(name=name)
         location.save()
-    return (location)
-
+    return(location)
 
 def get_or_create_sensor(variable, user, location):
     try:
@@ -72,27 +56,23 @@ def get_or_create_sensor(variable, user, location):
     except Sensor.DoesNotExist:
         sensor = Sensor(variable=variable, user=user, location=location)
         sensor.save()
-    return (sensor)
-
+    return(sensor)
 
 def get_sensor(variable, user, location):
     sensor = Sensor.objects.get(variable=variable, user=user, location=location)
-    return (sensor)
-
+    return(sensor)
 
 def create_sensorData(sensor, value):
     sensorData = SensorData(sensor=sensor, value=value)
     sensorData.save()
-    return ()
-
+    return()
 
 def get_last_measure(sensor):
     last_measure = SensorData.objects.filter(sensor=sensor).latest('dateTime')
     print(last_measure.dateTime)
     print(datetime.now())
-    return (last_measure.value)
+    return(last_measure.value)
+
 
 class HistoricalView(TemplateView):
     template_name = 'historical.html'
-
-
