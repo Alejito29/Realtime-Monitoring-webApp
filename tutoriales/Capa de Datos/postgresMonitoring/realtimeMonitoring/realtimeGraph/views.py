@@ -40,10 +40,9 @@ class DashboardView(TemplateView):
            user_list = User.objects.all()
            tmpJson = serializers.serialize("json", user_list)
            station_list = Station.objects.all()
-           station_list_json = serializers.serialize("json", station_list)
-           print(station_list_json)
-           tmpObj = tmpJson.update(station_list_json)
-           return HttpResponse(json.dumps(tmpObj))
+           statiton_tmpJson = serializers.serialize("json", station_list)
+           jsonMerged = {**json.loads(tmpJson), **json.loads(statiton_tmpJson)}
+           return HttpResponse(json.dumps(jsonMerged))
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
