@@ -3,6 +3,7 @@ import json
 from os import name
 import time
 
+from django.core.serializers import serialize
 from django.db.models.aggregates import Count
 from realtimeMonitoring.utils import getCityCoordinates
 from typing import Dict
@@ -37,14 +38,9 @@ class DashboardView(TemplateView):
     def get(self, request, **kwargs):
         data = {}
         try:
-            cityO = City.objects.all()
-            stateO = State.objects.all()
-            countryO = Country.objects.all()
-            tmpJson_cityO = serializers.serialize("json", cityO)
-            tmpJson_stateO = serializers.serialize("json", stateO)
-            tmpJson_countryO = serializers.serialize("json", countryO)
-            response = {'user': tmpJson_cityO}
-            return HttpResponse(json.dumps(response), content_type="application/json")
+            location_list = Station.objects.all().order_by('location')
+            location_list_serialize = json.loads(serialize('json', location_list))
+            return JsonResponse({'location': location_list_serialize})
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
