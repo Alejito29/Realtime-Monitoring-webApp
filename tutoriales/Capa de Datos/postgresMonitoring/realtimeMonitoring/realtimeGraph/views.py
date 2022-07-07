@@ -37,7 +37,8 @@ class DashboardView(TemplateView):
     def get(self, request, **kwargs):
         data = {}
         try:
-           print("")
+           user = City.objects.all()
+           print(user)
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
