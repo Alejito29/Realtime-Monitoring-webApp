@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 import json
 from realtimeGraph.views import get_or_create_user, get_or_create_location, get_or_create_sensor, create_sensorData
 
-broker_address = "127.0.0.1"
+broker_address = "iotlab.virtual.uniandes.edu.co"
 broker_port = 8080
 topic = "#"
 
