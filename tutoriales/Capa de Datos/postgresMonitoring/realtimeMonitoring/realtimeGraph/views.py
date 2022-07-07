@@ -46,8 +46,7 @@ class DashboardView(TemplateView):
             a = json.loads(tmpJson_cityO)
             b = json.loads(tmpJson_stateO)
             c = json.loads(tmpJson_countryO)
-            d = dict(a.items() + b.items())
-            return HttpResponse(json.dumps(d), content_type="application/json")
+            return HttpResponse(json.dumps(a), content_type="application/json")
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
