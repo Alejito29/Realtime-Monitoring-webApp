@@ -37,7 +37,7 @@ class DashboardView(TemplateView):
     def get(self, request, **kwargs):
         data = {}
         try:
-           user_list = list(user.objects.all())
+           user_list = list(User.objects.all())
            print(user_list)
         except Exception as e:
             data['error'] = str(e)
