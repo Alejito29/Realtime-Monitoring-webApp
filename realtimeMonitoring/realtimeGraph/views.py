@@ -14,14 +14,6 @@ class DashboardView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request, *args, **kwargs):
-        data = {}
-        try:
-            print("LLego metodo")
-        except Exception as e:
-            data['error'] = str(e)
-        return JsonResponse(data, safe=False)
-
     def post(self, request, *args, **kwargs):
         data = {}
         try:
@@ -100,22 +92,4 @@ def getTestData(request, *args, **kwargs):
 class HistoricalView(TemplateView):
     template_name = 'historical.html'
 
-    def getTestData(self, request, *args, **kwargs):
-        data = {}
-        try:
-            print("LLego metodo")
-        except Exception as e:
-            data['error'] = str(e)
-        return JsonResponse(data, safe=False)
 
-
-class TestData(TemplateView):
-    template_name = 'historical.html'
-
-    def getTestData(self, request, *args, **kwargs):
-        data = {}
-        try:
-            print("LLego metodo")
-        except Exception as e:
-            data['error'] = str(e)
-        return JsonResponse(data, safe=False)
