@@ -37,13 +37,8 @@ class DashboardView(TemplateView):
     def get(self, request, **kwargs):
         data = {}
         try:
-           user_list = User.objects.all()
-           tmpJson = serializers.serialize("json", user_list)
-
-           station_list = City.objects.all()
-           statiton_tmpJson = serializers.serialize("json", station_list)
-
-           return HttpResponse(json.dumps(statiton_tmpJson))
+           data = serializers.serialize('json', User.objects.all().get_queryset())
+           return HttpResponse(data, content_type="application/json")
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
