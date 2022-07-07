@@ -38,13 +38,13 @@ class DashboardView(TemplateView):
     def get(self, request, **kwargs):
         data = {}
         try:
-            location_list = Station.objects.all().order_by('location')
+            location_list = Location.objects.all().order_by('location')
             location_list_serialize = json.loads(serialize('json', location_list))
             state_list = State.objects.all().order_by('name')
             state_list_serialize = json.loads(serialize('json', state_list))
             country_list = Country.objects.all().order_by('name')
             country_list_serialize = json.loads(serialize('json', country_list))
-            user_list = Country.objects.all().order_by('name')
+            user_list = User.objects.all().order_by('name')
             user_list_serialize = json.loads(serialize('json', user_list))
             return JsonResponse({'location': location_list_serialize, 'state': state_list_serialize, 'country': country_list_serialize, 'user': user_list_serialize })
         except Exception as e:
