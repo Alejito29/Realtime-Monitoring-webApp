@@ -38,7 +38,7 @@ class DashboardView(TemplateView):
     def get(self, request, **kwargs):
         data = {}
         try:
-            location_list = Location.objects.all().order_by('location')
+            location_list = Location.objects.all().order_by('description')
             location_list_serialize = json.loads(serialize('json', location_list))
 
             state_list = State.objects.all().order_by('name')
