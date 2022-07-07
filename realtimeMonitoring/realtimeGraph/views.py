@@ -18,7 +18,6 @@ class DashboardView(TemplateView):
         data = {}
         try:
             user = User.objects.all()
-            print(user)
             location = Location.objects.all()
             sensor = Sensor.objects.all()
             last_measure = SensorData.objects.all()
