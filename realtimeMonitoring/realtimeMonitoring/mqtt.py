@@ -3,7 +3,7 @@ import json
 from realtimeGraph.views import get_or_create_user, get_or_create_location, get_or_create_sensor, create_sensorData
 
 broker_address = "iotlab.virtual.uniandes.edu.co"
-broker_port = 8080
+broker_port = 8082
 topic = "#"
 
 
