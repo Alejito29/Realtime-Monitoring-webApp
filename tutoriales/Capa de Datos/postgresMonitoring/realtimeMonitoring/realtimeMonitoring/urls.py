@@ -27,5 +27,6 @@ from . import utils
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('getInformation/', DashboardView.as_view(), name='getInformation'),
     path('', include('realtimeGraph.urls')),
 ]
