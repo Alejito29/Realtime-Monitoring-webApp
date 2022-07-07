@@ -86,7 +86,7 @@ def get_last_measure(sensor):
 class HistoricalView(TemplateView):
     template_name = 'historical.html'
 
-    def get(self, request, *args, **kwargs):
+    def getTestData(self, request, *args, **kwargs):
         data = {}
         try:
             print("LLego metodo")
