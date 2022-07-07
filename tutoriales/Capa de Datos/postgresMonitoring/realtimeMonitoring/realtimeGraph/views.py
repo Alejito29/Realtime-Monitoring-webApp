@@ -39,7 +39,7 @@ class DashboardView(TemplateView):
         try:
             cityO = City.objects.all()
             stateO, created = State.objects.all()
-            countryO, created = Country.objects
+            countryO, created = Country.objects.all()
             tmpJson_cityO = serializers.serialize("json", cityO)
             tmpJson_stateO = serializers.serialize("json", stateO)
             tmpJson_countryO = serializers.serialize("json", countryO)
