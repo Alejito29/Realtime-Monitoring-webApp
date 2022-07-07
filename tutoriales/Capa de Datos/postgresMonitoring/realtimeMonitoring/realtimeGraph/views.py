@@ -41,6 +41,7 @@ class DashboardView(TemplateView):
            tmpJson = serializers.serialize("json", user_list)
            station_list = Station.objects.all()
            station_list_json = serializers.serialize("json", station_list)
+           print(station_list_json)
            tmpObj = tmpJson.update(station_list_json)
            return HttpResponse(json.dumps(tmpObj))
         except Exception as e:
