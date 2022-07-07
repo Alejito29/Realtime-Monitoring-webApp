@@ -38,7 +38,8 @@ class DashboardView(TemplateView):
         data = {}
         try:
            user_list = list(User.objects.all())
-           return JsonResponse({'user': user_list}, safe=False)
+           data = {user_list}
+           return JsonResponse(data, safe=False)
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
