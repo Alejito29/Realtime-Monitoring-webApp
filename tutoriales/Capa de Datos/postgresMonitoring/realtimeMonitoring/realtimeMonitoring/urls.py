@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 # from . import mqtt
+from realtimeGraph.views import DashboardView
 from . import utils
 
 # Función que registra usuarios en la base de datos. Los datos los toma del archivo users.pwd
