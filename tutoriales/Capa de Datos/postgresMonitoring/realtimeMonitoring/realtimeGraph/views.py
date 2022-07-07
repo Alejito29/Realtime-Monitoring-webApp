@@ -49,7 +49,13 @@ class DashboardView(TemplateView):
 
             user_list = User.objects.all().order_by('login')
             user_list_serialize = json.loads(serialize('json', user_list))
-            return JsonResponse({'location': location_list_serialize, 'state': state_list_serialize, 'country': country_list_serialize, 'user': user_list_serialize })
+
+            user_list = User.objects.all().order_by('login')
+            user_list_serialize = json.loads(serialize('json', user_list))
+
+            measurement_list = Measurement.objects.all().order_by('max_value')
+            measurement_list_serialize = json.loads(serialize('json', measurement_list))
+            return JsonResponse({'location': location_list_serialize, 'state': state_list_serialize, 'country': country_list_serialize, 'user': user_list_serialize, 'measurement': measurement_list_serialize })
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
