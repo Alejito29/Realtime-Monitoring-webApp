@@ -34,19 +34,13 @@ class DashboardView(TemplateView):
     Envía la página de template de Index con los datos de contexto procesados en get_context_data.
     '''
 
-    def getInformation(self, request, *args, **kwargs):
+    def get(self, request, **kwargs):
         data = {}
         try:
            print("")
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
-
-
-    def get(self, request, **kwargs):
-        if request.user == None or not request.user.is_authenticated:
-            return HttpResponseRedirect("/login/")
-        return render(request, 'index.html', self.get_context_data(**kwargs))
 
     '''
     Se procesan los datos para cargar el contexto del template.
