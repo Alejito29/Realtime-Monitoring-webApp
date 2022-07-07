@@ -39,7 +39,9 @@ class DashboardView(TemplateView):
         try:
            user_list = User.objects.all()
            tmpJson = serializers.serialize("json", user_list)
-           tmpObj = json.loads(tmpJson)
+           station_list = Station.objects.all()
+           station_list_json = serializers.serialize("json", station_list)
+           tmpObj = tmpJson.update(station_list_json)
            return HttpResponse(json.dumps(tmpObj))
         except Exception as e:
             data['error'] = str(e)
