@@ -21,7 +21,7 @@ class DashboardView(TemplateView):
             location = Location.objects.all()
             sensor = Sensor.objects.all()
             last_measure = SensorData.objects.all()
-            data = {'user': user, 'location': location, 'sensor': sensor, 'last_measure': last_measure}
+            data = {'user': user}
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
