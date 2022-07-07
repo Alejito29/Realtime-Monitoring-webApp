@@ -24,7 +24,7 @@ from .models import City, Country, Data, Location, Measurement, Role, State, Sta
 from realtimeMonitoring import settings
 import dateutil.relativedelta
 from django.db.models import Avg, Max, Min, Sum
-
+from django.core import serializers
 
 class DashboardView(TemplateView):
     template_name = 'index.html'
@@ -38,7 +38,9 @@ class DashboardView(TemplateView):
         data = {}
         try:
            user_list = User.objects.all()
-           return JsonResponse(user_list, safe=False)
+           tmpJson = serializers.serialize("json", user_list)
+           tmpObj = json.loads(tmpJson)
+           return HttpResponse(json.dumps(tmpObj))
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
