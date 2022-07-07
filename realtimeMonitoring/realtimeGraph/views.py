@@ -17,10 +17,10 @@ class DashboardView(TemplateView):
     def get(self, request, *args, **kwargs):
         data = {}
         try:
-            user = User.objects
-            location = Location.objects
-            sensor = Sensor.objects
-            last_measure = SensorData.objects
+            user = User.objects.get()
+            location = Location.objects.get()
+            sensor = Sensor.objects.get()
+            last_measure = SensorData.objects.get()
             data = {'user': user, 'location': location, 'sensor':sensor, 'last_measure':last_measure}
         except Exception as e:
             data['error'] = str(e)
