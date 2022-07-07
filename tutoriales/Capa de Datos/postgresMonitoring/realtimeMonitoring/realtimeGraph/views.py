@@ -38,16 +38,16 @@ class DashboardView(TemplateView):
         data = {}
         try:
             cityO = City.objects.all()
-            stateO, created = State.objects.all()
-            countryO, created = Country.objects.all()
+            stateO = State.objects.all()
+            countryO = Country.objects
             tmpJson_cityO = serializers.serialize("json", cityO)
             tmpJson_stateO = serializers.serialize("json", stateO)
             tmpJson_countryO = serializers.serialize("json", countryO)
             a = json.loads(tmpJson_cityO)
             b = json.loads(tmpJson_stateO)
-            b = json.loads(tmpJson_countryO)
-            c = dict(a.items() + b.items())
-           return HttpResponse(json.dumps(c), content_type="application/json")
+            c = json.loads(tmpJson_countryO)
+            d = dict(a.items() + b.items())
+            return HttpResponse(json.dumps(d), content_type="application/json")
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
