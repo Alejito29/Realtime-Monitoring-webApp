@@ -40,7 +40,9 @@ class DashboardView(TemplateView):
         try:
             location_list = Station.objects.all().order_by('location')
             location_list_serialize = json.loads(serialize('json', location_list))
-            return JsonResponse({'location': location_list_serialize})
+            state_list = State.objects.all().order_by('name')
+            state_list_serialize = json.loads(serialize('json', state_list))
+            return JsonResponse({'location': location_list_serialize, 'state': state_list_serialize })
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
