@@ -17,7 +17,11 @@ class DashboardView(TemplateView):
     def get(self, request, *args, **kwargs):
         data = {}
         try:
-            print("LLego metodo")
+            user = User.objects
+            location = Location.objects
+            sensor = Sensor.objects
+            last_measure = SensorData.objects
+            data = {'user': user, 'location': location, 'sensor':sensor, 'last_measure':last_measure}
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
