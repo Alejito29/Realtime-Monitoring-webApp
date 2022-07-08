@@ -25,7 +25,7 @@ from . import utils
 # La siguiente línea se encarga de iniciar el proceso de MQTT y escuchar los mensajes.
 # Descomentar para almacenar y registrar los mensajes que se publiquen desde las estaciones.
 # mqtt.client.loop_start()
-from ..realtimeGraph.views import DashboardView
+from realtimeGraph.views import DashboardView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
